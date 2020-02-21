@@ -87,7 +87,7 @@ const handleStream = (stream) => {
 
 
 const getCameraSelection = async () => {
-  const devices = await navigator.mediaDevices.enumerateDevices().then(gotDevices).catch(handleError);
+  const devices = await navigator.mediaDevices.enumerateDevices();
   console.log('devices ', devices)
   const videoDevices = devices.filter(device => device.kind === 'videoinput');
   const options = videoDevices.map(videoDevice => {
