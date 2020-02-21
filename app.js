@@ -1,7 +1,7 @@
 feather.replace();
 
 const controls = document.querySelector('.controls');
-const cameraOptions = document.querySelector('.video-options>select');
+const cameraOptions = document.querySelector('.video-options>select#camera');
 const video = document.querySelector('video');
 const canvas = document.querySelector('canvas');
 const screenshotImage = document.querySelector('img');
