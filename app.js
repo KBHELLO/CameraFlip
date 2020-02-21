@@ -32,7 +32,7 @@ cameraOptions.onchange = () => {
       exact: cameraOptions.value
     }
   };
-  alert("hello", updatedConstraints);
+  alert(updatedConstraints);
   startStream(updatedConstraints);
 };
 
