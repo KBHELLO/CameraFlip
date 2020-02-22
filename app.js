@@ -22,8 +22,6 @@ const constraints = {
       ideal: 1080,
       max: 1440
     },
-     video: { facingMode: "user" },
-     video: { facingMode: { exact: "environment" } }
   }
 };
 
@@ -45,7 +43,7 @@ play.onclick = () => {
     pause.classList.remove('d-none');
     return;
   }
-  if ('mediaDevices' in navigator && navigator.mediaDevices.getUserMedia) {
+  if ('mediaDevices' in navigator && navigator.mediaDevices.getUserMedia({ audio: true, video: { facingMode: { exact: "environment" } } })) {
     const updatedConstraints = {
       ...constraints,
       deviceId: {
