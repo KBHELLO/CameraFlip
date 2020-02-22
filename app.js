@@ -32,7 +32,6 @@ cameraOptions.onchange = () => {
       exact: cameraOptions.value
     }
   };
-  alert(updatedConstraints);
   startStream(updatedConstraints);
 };
 
@@ -88,7 +87,7 @@ const handleStream = (stream) => {
 
 const getCameraSelection = async () => {
   const devices = await navigator.mediaDevices.enumerateDevices();
-  console.log('devices ', devices)
+      alert('devices ',devices);
   const videoDevices = devices.filter(device => device.kind === 'videoinput');
   const options = videoDevices.map(videoDevice => {
     return `<option value="${videoDevice.deviceId}">${videoDevice.label}</option>`;
