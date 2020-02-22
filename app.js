@@ -42,7 +42,7 @@ play.onclick = () => {
     pause.classList.remove('d-none');
     return;
   }
-  if ('mediaDevices' in navigator && navigator.mediaDevices.getUserMedia({ audio: true, video: { facingMode: { exact: "environment" } } })) {
+  if ('mediaDevices' in navigator && navigator.mediaDevices.getUserMedia) {
     const updatedConstraints = {
       ...constraints,
       deviceId: {
