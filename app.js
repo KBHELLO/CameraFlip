@@ -144,10 +144,12 @@ navigator.mediaDevices
   .catch(handleError);
 
 function gotStream(stream) {
-  arToolkitSource.domElement.srcObject = stream; // make stream available to console
+  var arToolkitSource = new THREEx.ArToolkitSource({
+     arToolkitSource.domElement.srcObject = stream; // make stream available to console
   //video.srcObject = stream;
   // Refresh button list in case labels have become available
   return navigator.mediaDevices.enumerateDevices();
+  })
 }
 
 function start() {
