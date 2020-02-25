@@ -150,6 +150,7 @@ function gotStream(stream) {
 }
 
 function start() {
+  console.log('*****',window.stream);
   if (window.stream) {
     window.stream.getTracks().forEach(function(track) {
       track.stop();
