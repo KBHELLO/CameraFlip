@@ -99,7 +99,7 @@ const getCameraSelection = async () => {
 };
 
 getCameraSelection();*/
-var videoSelect = document.querySelector("select#camera");
+var videoSelect = document.querySelector("select#videoSource");
 var selectors = [videoSelect];
 
 function gotDevices(deviceInfos) {
