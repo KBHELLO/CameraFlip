@@ -101,6 +101,7 @@ const getCameraSelection = async () => {
 getCameraSelection();*/
 var videoSelect = document.querySelector("select#videoSource");
 var selectors = [videoSelect];
+var video = document.querySelector('video');
 
 function gotDevices(deviceInfos) {
   // Handles being called several times to update labels. Preserve values.
@@ -143,8 +144,8 @@ navigator.mediaDevices
   .catch(handleError);
 
 function gotStream(stream) {
-  arToolkitSource.domElement.srcObject = stream; // make stream available to console
-  // video.srcObject = stream;
+  //arToolkitSource.domElement.srcObject = stream; // make stream available to console
+  video.srcObject = stream;
   // Refresh button list in case labels have become available
   return navigator.mediaDevices.enumerateDevices();
 }
