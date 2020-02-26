@@ -8,7 +8,6 @@ const screenshotImage = document.querySelector('img');
 const buttons = [...controls.querySelectorAll('button')];
 let streamStarted = false;
 let deviceArray = [];
-let currentDeviceId;
 
 const [play, pause, screenshot] = buttons;
 
@@ -28,8 +27,8 @@ const constraints = {
 };
 
 cameraOptions.onchange = () => {
-  if(deviceId.length === 2 ){
-    if(deviceId.indexOf(cameraOptions.value) === 0){
+  if(deviceArray.length === 2 ){
+    if(deviceArray.indexOf(cameraOptions.value) === 0){
        const updatedConstraints = {
         video: {
     width: {
@@ -47,12 +46,12 @@ cameraOptions.onchange = () => {
     }     
   },
     deviceId: {
-      exact: deviceId[0]
+      exact: deviceArray[0]
     }
   };
   startStream(updatedConstraints);
     }
-    if(deviceId.indexOf(cameraOptions.value) === 1){
+    if(deviceArray.indexOf(cameraOptions.value) === 1){
         const updatedConstraints = {
      video: {
     width: {
@@ -70,13 +69,13 @@ cameraOptions.onchange = () => {
     }     
   },
     deviceId: {
-      exact: deviceId[1]
+      exact: deviceArray[1]
     }
   };
   startStream(updatedConstraints);
     }
   }
-  if(deviceId.length === 1) {
+  if(deviceArray.length === 1) {
       const updatedConstraints = {
     ...constraints,
     deviceId: {
