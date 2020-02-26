@@ -1,12 +1,14 @@
 feather.replace();
 
 const controls = document.querySelector('.controls');
-const cameraOptions = document.querySelector('.video-options>select#camera');
+const cameraOptions = document.querySelector('.video-options>select');
 const video = document.querySelector('video');
 const canvas = document.querySelector('canvas');
 const screenshotImage = document.querySelector('img');
 const buttons = [...controls.querySelectorAll('button')];
 let streamStarted = false;
+let deviceArray = [];
+let currentDeviceId;
 
 const [play, pause, screenshot] = buttons;
 
@@ -22,20 +24,67 @@ const constraints = {
       ideal: 1080,
       max: 1440
     },
-    facingMode: { 
-      exact: 'user'
-    }
   }
 };
 
 cameraOptions.onchange = () => {
-  const updatedConstraints = {
+  if(deviceId.length === 2 ){
+    if(deviceId.indexOf(cameraOptions.value) === 0){
+       const updatedConstraints = {
+        video: {
+    width: {
+      min: 1280,
+      ideal: 1920,
+      max: 2560,
+    },
+    height: {
+      min: 720,
+      ideal: 1080,
+      max: 1440
+    },
+     facingMode: { 
+      exact: 'user'
+    }     
+  }
+    deviceId: {
+      exact: deviceId[0]
+    }
+  };
+  startStream(updatedConstraints);
+    }
+    if(deviceId.indexOf(cameraOptions.value) === 1){
+        const updatedConstraints = {
+     video: {
+    width: {
+      min: 1280,
+      ideal: 1920,
+      max: 2560,
+    },
+    height: {
+      min: 720,
+      ideal: 1080,
+      max: 1440
+    },
+     facingMode: { 
+      exact: 'environment'
+    }     
+  }
+    deviceId: {
+      exact: deviceId[1]
+    }
+  };
+  startStream(updatedConstraints);
+    }
+  }
+  if(deviceId.length === 1) {
+      const updatedConstraints = {
     ...constraints,
     deviceId: {
       exact: cameraOptions.value
     }
   };
   startStream(updatedConstraints);
+  }
 };
 
 play.onclick = () => {
@@ -46,13 +95,25 @@ play.onclick = () => {
     return;
   }
   if ('mediaDevices' in navigator && navigator.mediaDevices.getUserMedia) {
-    const updatedConstraints = {
+    if(deviceArray.length === 1){
+          const updatedConstraints = {
       ...constraints,
       deviceId: {
         exact: cameraOptions.value
       }
     };
     startStream(updatedConstraints);
+    }
+    if(deviceArray.length === 2) {
+      console.log('devicce array');
+       const updatedConstraints = {
+      ...constraints,
+      deviceId: {
+        exact: deviceArray[0]
+      }
+    };
+    startStream(updatedConstraints);
+    }
   }
 };
 
@@ -90,11 +151,12 @@ const handleStream = (stream) => {
 
 const getCameraSelection = async () => {
   const devices = await navigator.mediaDevices.enumerateDevices();
-      alert('devices ',devices);
   const videoDevices = devices.filter(device => device.kind === 'videoinput');
   const options = videoDevices.map(videoDevice => {
+    deviceArray.push(videoDevice.deviceId);
     return `<option value="${videoDevice.deviceId}">${videoDevice.label}</option>`;
   });
+  console.log('device array' , deviceArray);
   cameraOptions.innerHTML = options.join('');
 };
 
