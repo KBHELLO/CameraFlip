@@ -45,7 +45,7 @@ cameraOptions.onchange = () => {
      facingMode: { 
       exact: 'user'
     }     
-  }
+  },
     deviceId: {
       exact: deviceId[0]
     }
@@ -68,7 +68,7 @@ cameraOptions.onchange = () => {
      facingMode: { 
       exact: 'environment'
     }     
-  }
+  },
     deviceId: {
       exact: deviceId[1]
     }
