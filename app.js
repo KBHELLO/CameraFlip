@@ -27,9 +27,9 @@ const constraints = {
 };
 
 cameraOptions.onchange = () => {
-  alert('onchange call');
   if(deviceArray.length === 2 ){
     if(deviceArray.indexOf(cameraOptions.value) === 0){
+       alert('onchange call pos 0');
        const updatedConstraints = {
         video: {
     width: {
@@ -53,6 +53,7 @@ cameraOptions.onchange = () => {
   startStream(updatedConstraints);
     }
     if(deviceArray.indexOf(cameraOptions.value) === 1){
+      alert('onchange call pos 1');
         const updatedConstraints = {
      video: {
     width: {
