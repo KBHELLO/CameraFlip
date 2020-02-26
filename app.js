@@ -27,6 +27,7 @@ const constraints = {
 };
 
 cameraOptions.onchange = () => {
+  alert('onchange call');
   if(deviceArray.length === 2 ){
     if(deviceArray.indexOf(cameraOptions.value) === 0){
        const updatedConstraints = {
