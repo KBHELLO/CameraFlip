@@ -47,7 +47,7 @@ cameraOptions.onchange = () => {
     }     
   },
     deviceId: {
-      exact: deviceArray[0]
+      exact: deviceArray[1]
     }
   };
   startStream(updatedConstraints);
@@ -71,7 +71,7 @@ cameraOptions.onchange = () => {
     }     
   },
     deviceId: {
-      exact: deviceArray[1]
+      exact: deviceArray[0]
     }
   };
   startStream(updatedConstraints);
